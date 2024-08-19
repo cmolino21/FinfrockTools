@@ -16,6 +16,9 @@ namespace FinfrockTools
     {
         public Result OnStartup(UIControlledApplication application)
         {
+            // Get the Revit version
+            string revitVersion = application.ControlledApplication.VersionNumber;
+
             // Create a custom ribbon tab
             string tabName = "Finfrock Tools";
             application.CreateRibbonTab(tabName);
@@ -24,14 +27,23 @@ namespace FinfrockTools
             RibbonPanel ribbonPanel = application.CreateRibbonPanel(tabName, "DualDecks");
 
             // Add the first button
-            string firstCommandAssembly = @"J:\Autodesk Standards\Revit\Add-Ins\DualDeckEditor\2023\DualDeckEditorAddin.dll";
+            string firstCommandAssembly = @"J:\Autodesk Standards\Revit\Add-Ins\DualDeckEditor\2021-2024\DualDeckEditorAddin.dll";
             PushButtonData firstButtonData = new PushButtonData("DualDeck Editor", "DualDeck \nEditor", firstCommandAssembly, "DualDeckEditorAddin.DualDeckEditorCommand");
             PushButton firstButton = ribbonPanel.AddItem(firstButtonData) as PushButton;
             firstButton.ToolTip = "Edit DualDeck Parameters.";
             firstButton.LargeImage = new BitmapImage(new Uri("pack://application:,,,/FinfrockTools;component/Images/DD_32.png"));
 
             // Add the second button
-            string secondCommandAssembly = @"J:\Autodesk Standards\Revit\Add-Ins\CleanFileAutomation\2023\CleanFileAutomation.dll";
+            string secondCommandAssembly;
+            // Set the path based on the Revit version
+            if (revitVersion.StartsWith("2024"))
+            {
+                secondCommandAssembly = @"J:\Autodesk Standards\Revit\Add-Ins\CleanFileAutomation\2024\CleanFileAutomation.dll";
+            }
+            else
+            {
+                secondCommandAssembly = @"J:\Autodesk Standards\Revit\Add-Ins\CleanFileAutomation\2021-2023\CleanFileAutomation.dll";
+            }
             PushButtonData secondButtonData = new PushButtonData("Clean File Exporter", "Clean File \nExporter", secondCommandAssembly, "CleanFileAutomation.CleanFileCommand");
             PushButton secondButton = ribbonPanel.AddItem(secondButtonData) as PushButton;
             secondButton.ToolTip = "Automatically Export Clean Files.";
