@@ -28,7 +28,16 @@ namespace FinfrockTools
             RibbonPanel ribbonPanel = application.CreateRibbonPanel(tabName, "DualDecks");
 
             // Add the first button
-            string firstCommandAssembly = @"J:\Autodesk Standards\Revit\Add-Ins\DualDeckEditor\2021-2024\DualDeckEditorAddin.dll";
+            string firstCommandAssembly;
+            if (revitVersion.StartsWith("2025"))
+            {
+                firstCommandAssembly = @"J:\Autodesk Standards\Revit\Add-Ins\DualDeckEditor\2025\DualDeckEditorAddin.dll";
+            }
+            else
+            {
+                firstCommandAssembly = @"J:\Autodesk Standards\Revit\Add-Ins\DualDeckEditor\2021-2024\DualDeckEditorAddin.dll";
+            }
+            firstCommandAssembly = @"J:\Autodesk Standards\Revit\Add-Ins\DualDeckEditor\2021-2024\DualDeckEditorAddin.dll";
             PushButtonData firstButtonData = new PushButtonData("DualDeck Editor", "DualDeck \nEditor", firstCommandAssembly, "DualDeckEditorAddin.DualDeckEditorCommand");
             PushButton firstButton = ribbonPanel.AddItem(firstButtonData) as PushButton;
             firstButton.ToolTip = "Edit DualDeck Parameters.";
@@ -40,6 +49,10 @@ namespace FinfrockTools
             if (revitVersion.StartsWith("2024"))
             {
                 secondCommandAssembly = @"J:\Autodesk Standards\Revit\Add-Ins\CleanFileAutomation\2024\CleanFileAutomation.dll";
+            }
+            else if (revitVersion.StartsWith("2025"))
+            {
+                secondCommandAssembly = @"J:\Autodesk Standards\Revit\Add-Ins\CleanFileAutomation\2025\CleanFileAutomation.dll";
             }
             else
             {
