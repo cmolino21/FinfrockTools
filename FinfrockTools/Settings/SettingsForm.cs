@@ -25,6 +25,7 @@ namespace FinfrockTools.Settings
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             this.chkWorksetPrompt = new System.Windows.Forms.CheckBox();
             this.lblBuildVersion = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
@@ -77,6 +78,7 @@ namespace FinfrockTools.Settings
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.chkWorksetPrompt);
             this.Controls.Add(this.lblBuildVersion);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SettingsForm";
             this.Text = "Settings";
             this.panel1.ResumeLayout(false);

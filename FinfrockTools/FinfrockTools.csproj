@@ -78,6 +78,10 @@
         <ErrorReport>prompt</ErrorReport>
 		<!--Prefer32Bit>true</Prefer32Bit-->
     </PropertyGroup>
+    <ItemGroup>
+      <None Remove="Images\Settings_32.ico" />
+      <None Remove="Images\Settings_32.png" />
+    </ItemGroup>
 
     <!--Revit API Version and other references-->
     <ItemGroup>
@@ -126,6 +130,8 @@
   <ItemGroup>
     <Resource Include="Images\DD_32.png" />
     <Resource Include="Images\EX_32.png" />
+    <Resource Include="Images\Settings_32.ico" />
+    <Resource Include="Images\Settings_32.png" />
   </ItemGroup>
 	
 	

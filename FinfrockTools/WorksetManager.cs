@@ -17,7 +17,7 @@ namespace FinfrockTools
             IList<Workset> worksets = worksetCollector.ToWorksets();
 
             // Create a list of workset names
-            List<string> worksetNames = worksets.Select(w => w.Name).ToList();
+            List<Workset> sortedWorksets = worksets.OrderBy(w => w.Name).ToList();
 
             // Show a dialog to the user to select the active workset
             TaskDialog taskDialog = new TaskDialog("Select Active Workset")
@@ -29,7 +29,7 @@ namespace FinfrockTools
             // Create a command link for each workset
             Dictionary<int, Workset> worksetMap = new Dictionary<int, Workset>();
             int commandLinkIndex = 1;
-            foreach (Workset workset in worksets)
+            foreach (Workset workset in sortedWorksets)
             {
                 taskDialog.AddCommandLink((TaskDialogCommandLinkId)commandLinkIndex, workset.Name);
                 worksetMap[commandLinkIndex] = workset;
