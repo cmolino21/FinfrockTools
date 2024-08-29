@@ -79,6 +79,8 @@ namespace FinfrockTools.Settings
             this.Controls.Add(this.chkWorksetPrompt);
             this.Controls.Add(this.lblBuildVersion);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "SettingsForm";
             this.Text = "Settings";
             this.panel1.ResumeLayout(false);

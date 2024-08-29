@@ -45,7 +45,7 @@ namespace FinfrockTools
             // Create a ribbon panel within the custom tab
             RibbonPanel ribbonPanel = application.CreateRibbonPanel(tabName, "DualDecks");
 
-            // Add the first button
+            // Add the DDEditor button
             string DDEditorCommandAssembly;
             if (revitVersion.StartsWith("2025"))
             {
@@ -55,13 +55,31 @@ namespace FinfrockTools
             {
                 DDEditorCommandAssembly = @"J:\Autodesk Standards\Revit\Add-Ins\DualDeckEditor\2021-2024\DualDeckEditorAddin.dll";
             }
-            DDEditorCommandAssembly = @"J:\Autodesk Standards\Revit\Add-Ins\DualDeckEditor\2021-2024\DualDeckEditorAddin.dll";
-            PushButtonData firstButtonData = new PushButtonData("DualDeck Editor", "DualDeck \nEditor", DDEditorCommandAssembly, "DualDeckEditorAddin.DualDeckEditorCommand");
-            PushButton firstButton = ribbonPanel.AddItem(firstButtonData) as PushButton;
-            firstButton.ToolTip = "Edit DualDeck Parameters.";
-            firstButton.LargeImage = ToImageSource(Resource.DD_32, FinfrockTools.BitmapSourceConverter.ImageType.Large);
+            PushButtonData DDEditorButtonData = new PushButtonData("DualDeck Editor", "DualDeck \nEditor", DDEditorCommandAssembly, "DualDeckEditorAddin.DualDeckEditorCommand");
+            PushButton DDEditorButton = ribbonPanel.AddItem(DDEditorButtonData) as PushButton;
+            DDEditorButton.ToolTip = "Edit DualDeck Parameters.";
+            DDEditorButton.LargeImage = ToImageSource(Resource.DD_32, FinfrockTools.BitmapSourceConverter.ImageType.Large);
 
-            // Add the second button
+            // Add the DDAssemblyMaker Button
+            string DDAssemblyMakerCommandAssembly;
+            if (revitVersion.StartsWith("2025"))
+            {
+                DDAssemblyMakerCommandAssembly = @"J:\Autodesk Standards\Revit\Add-Ins\DDAssemblyMaker\2025\DDAssemblyMaker.dll";
+            }
+            else if (revitVersion.StartsWith("2024"))
+            {
+                DDAssemblyMakerCommandAssembly = @"J:\Autodesk Standards\Revit\Add-Ins\DDAssemblyMaker\2024\DDAssemblyMaker.dll";
+            }
+            else
+            {
+                DDAssemblyMakerCommandAssembly = @"J:\Autodesk Standards\Revit\Add-Ins\DDAssemblyMaker\2021-2023\DDAssemblyMaker.dll";
+            }
+            PushButtonData DDAssemblyMakerButtonData = new PushButtonData("DualDeck Assembly Maker", "DualDeck \nAssembly Maker", DDAssemblyMakerCommandAssembly, "DDAssemblyMaker.DDAssemblyMaker");
+            PushButton DDAssemblyMakerButton = ribbonPanel.AddItem(DDAssemblyMakerButtonData) as PushButton;
+            DDAssemblyMakerButton.ToolTip = "Create Dualdeck Assemblies.";
+            DDAssemblyMakerButton.LargeImage = ToImageSource(Resource.DD_32, FinfrockTools.BitmapSourceConverter.ImageType.Large);
+
+            // Add the CleanFileAutomation button
             string CFAutomationCommandAssembly;
             // Set the path based on the Revit version
             if (revitVersion.StartsWith("2024"))
@@ -76,10 +94,11 @@ namespace FinfrockTools
             {
                 CFAutomationCommandAssembly = @"J:\Autodesk Standards\Revit\Add-Ins\CleanFileAutomation\2021-2023\CleanFileAutomation.dll";
             }
-            PushButtonData secondButtonData = new PushButtonData("Clean File Exporter", "Clean File \nExporter", CFAutomationCommandAssembly, "CleanFileAutomation.CleanFileCommand");
-            PushButton secondButton = ribbonPanel.AddItem(secondButtonData) as PushButton;
-            secondButton.ToolTip = "Automatically Export Clean Files.";
-            secondButton.LargeImage = ToImageSource(Resource.EX_32, FinfrockTools.BitmapSourceConverter.ImageType.Large);
+            PushButtonData CFAutomationButtonData = new PushButtonData("Clean File Exporter", "Clean File \nExporter", CFAutomationCommandAssembly, "CleanFileAutomation.CleanFileCommand");
+            PushButton CFAutomationButton = ribbonPanel.AddItem(CFAutomationButtonData) as PushButton;
+            CFAutomationButton.ToolTip = "Automatically Export Clean Files.";
+            CFAutomationButton.LargeImage = ToImageSource(Resource.EX_32, FinfrockTools.BitmapSourceConverter.ImageType.Large);
+
 
             // Handle the document opened event to check for the DualDeck model
             application.ControlledApplication.DocumentOpened += (sender, args) =>
@@ -88,8 +107,9 @@ namespace FinfrockTools
 
                 // Disable the buttons if the document title does not contain "DUALDECK"
                 bool isDualDeckModel = doc != null && doc.Title.ToUpper().Contains("DUALDECK");
-                firstButton.Enabled = isDualDeckModel;
-                secondButton.Enabled = isDualDeckModel;
+                DDEditorButton.Enabled = isDualDeckModel;
+                CFAutomationButton.Enabled = isDualDeckModel;
+                DDAssemblyMakerButton.Enabled = isDualDeckModel;
 
                 // Prompt the user to confirm the active workset if enabled
                 if (Settings.IsWorksetPromptEnabled && doc != null)
