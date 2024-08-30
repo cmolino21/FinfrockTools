@@ -100,6 +100,33 @@ namespace FinfrockTools
             CFAutomationButton.LargeImage = ToImageSource(Resource.EX_32, FinfrockTools.BitmapSourceConverter.ImageType.Large);
 
 
+
+
+            // Create a ribbon panel within the custom tab
+            RibbonPanel ribbonPanelMEP = application.CreateRibbonPanel(tabName, "MEP");
+
+            // Add the DDEditor button
+            string DryerExhaustCommandAssembly;
+            if (revitVersion.StartsWith("2025"))
+            {
+                DryerExhaustCommandAssembly = @"J:\Autodesk Standards\Revit\Add-Ins\ExhaustLengthChecker\2025\ExhaustLengthChecker.dll";
+            }
+            else
+            {
+                DryerExhaustCommandAssembly = @"J:\Autodesk Standards\Revit\Add-Ins\ExhaustLengthChecker\2021-2024\ExhaustLengthChecker.dll";
+            }
+            PushButtonData DryerExhaustButtonData = new PushButtonData("Dryer Exhaust Calculator", "Dryer Ex \nCalculator", DryerExhaustCommandAssembly, "ExhaustLengthChecker.CalculateDuctLength");
+            PushButton DryerExhaustButton = ribbonPanelMEP.AddItem(DryerExhaustButtonData) as PushButton;
+            DryerExhaustButton.ToolTip = "Calculate the equivalent length of dryer exhausts.";
+            DryerExhaustButton.LargeImage = ToImageSource(Resource.DD_32, FinfrockTools.BitmapSourceConverter.ImageType.Large);
+
+
+
+
+
+
+
+
             // Handle the document opened event to check for the DualDeck model
             application.ControlledApplication.DocumentOpened += (sender, args) =>
             {
