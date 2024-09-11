@@ -77,7 +77,7 @@ namespace FinfrockTools
             PushButtonData DDAssemblyMakerButtonData = new PushButtonData("DualDeck Assembly Maker", "DualDeck \nAssembly Maker", DDAssemblyMakerCommandAssembly, "DDAssemblyMaker.DDAssemblyMaker");
             PushButton DDAssemblyMakerButton = ribbonPanel.AddItem(DDAssemblyMakerButtonData) as PushButton;
             DDAssemblyMakerButton.ToolTip = "Create Dualdeck Assemblies.";
-            DDAssemblyMakerButton.LargeImage = ToImageSource(Resource.DD_32, FinfrockTools.BitmapSourceConverter.ImageType.Large);
+            DDAssemblyMakerButton.LargeImage = ToImageSource(Resource.DD_Assembly_32, FinfrockTools.BitmapSourceConverter.ImageType.Large);
 
             // Add the CleanFileAutomation button
             string CFAutomationCommandAssembly;
@@ -118,7 +118,7 @@ namespace FinfrockTools
             PushButtonData DryerExhaustButtonData = new PushButtonData("Dryer Exhaust Calculator", "Dryer Ex \nCalculator", DryerExhaustCommandAssembly, "ExhaustLengthChecker.CalculateDuctLength");
             PushButton DryerExhaustButton = ribbonPanelMEP.AddItem(DryerExhaustButtonData) as PushButton;
             DryerExhaustButton.ToolTip = "Calculate the equivalent length of dryer exhausts.";
-            DryerExhaustButton.LargeImage = ToImageSource(Resource.DD_32, FinfrockTools.BitmapSourceConverter.ImageType.Large);
+            DryerExhaustButton.LargeImage = ToImageSource(Resource.Exhaust_Calc_32, FinfrockTools.BitmapSourceConverter.ImageType.Large);
 
 
 

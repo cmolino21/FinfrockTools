@@ -40,7 +40,7 @@
 	    <When Condition="$(Configuration.Contains('2025'))">
 		    <PropertyGroup>
 			    <RevitVersion>2025</RevitVersion>
-			    <TargetFramework>net8.0</TargetFramework>
+			    <TargetFramework>net8.0-windows</TargetFramework>
 			    <EnableDynamicLoading>true</EnableDynamicLoading>
 		    </PropertyGroup>
 	    </When>
@@ -76,9 +76,13 @@
         <PlatformTarget>x64</PlatformTarget>
         <LangVersion>7.3</LangVersion>
         <ErrorReport>prompt</ErrorReport>
-		<!--Prefer32Bit>true</Prefer32Bit-->
+
+
     </PropertyGroup>
+	
     <ItemGroup>
+      <None Remove="Images\DD_Assembly_32.png" />
+      <None Remove="Images\Exhaust_Calc_32.png" />
       <None Remove="Images\Settings_32.ico" />
       <None Remove="Images\Settings_32.png" />
     </ItemGroup>
@@ -110,7 +114,7 @@
 		<Reference Include="System.Windows.Forms" />
     </ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
+	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0-windows'">
 		<PackageReference Include="System.Drawing.Common" Version="8.0.0" />
 		<FrameworkReference Include="Microsoft.WindowsDesktop.App.WPF" />
 	</ItemGroup>
@@ -129,6 +133,8 @@
 	
   <ItemGroup>
     <Resource Include="Images\DD_32.png" />
+    <Resource Include="Images\DD_Assembly_32.png" />
+    <Resource Include="Images\Exhaust_Calc_32.png" />
     <Resource Include="Images\EX_32.png" />
     <Resource Include="Images\Settings_32.ico" />
     <Resource Include="Images\Settings_32.png" />

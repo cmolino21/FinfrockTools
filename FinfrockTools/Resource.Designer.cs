@@ -73,9 +73,29 @@ namespace FinfrockTools {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap DD_Assembly_32 {
+            get {
+                object obj = ResourceManager.GetObject("DD_Assembly_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap EX_32 {
             get {
                 object obj = ResourceManager.GetObject("EX_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Exhaust_Calc_32 {
+            get {
+                object obj = ResourceManager.GetObject("Exhaust_Calc_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

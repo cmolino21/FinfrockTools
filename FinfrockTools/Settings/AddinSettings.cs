@@ -10,7 +10,7 @@ namespace FinfrockTools.Settings
 {
     public class AddinSettings
     {
-        public string BuildVersion = "1.0.0";
+        public string BuildVersion = "1.0.1";
 
         public bool IsWorksetPromptEnabled { get; set; } = true;
 
