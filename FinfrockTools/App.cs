@@ -133,7 +133,7 @@ namespace FinfrockTools
                 Document doc = args.Document;
 
                 // Disable the buttons if the document title does not contain "DUALDECK"
-                bool isDualDeckModel = doc != null && doc.Title.ToUpper().Contains("DUALDECK");
+                bool isDualDeckModel = doc != null && (doc.Title.ToUpper().Contains("DUALDECK") || doc.Title.ToUpper().Contains("DD"));
                 DDEditorButton.Enabled = isDualDeckModel;
                 CFAutomationButton.Enabled = isDualDeckModel;
                 DDAssemblyMakerButton.Enabled = isDualDeckModel;
